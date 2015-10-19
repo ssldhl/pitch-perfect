@@ -15,11 +15,82 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLz-g4-b55">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Microphone"/>
+                                <connections>
+                                    <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dw1-Xk-i6M"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recording" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yA7-Ss-Obb">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" name="PingFangSC-Light" family="PingFang SC" pointSize="14"/>
+                                <color key="textColor" red="0.14509803921568626" green="0.28235294117647058" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact">
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQH-JF-kj0">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Stop"/>
+                                <connections>
+                                    <action selector="stopAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Igp-of-CZJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wQH-JF-kj0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6zX-fN-LBQ"/>
+                            <constraint firstItem="bLz-g4-b55" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8D3-Re-DFJ"/>
+                            <constraint firstItem="wQH-JF-kj0" firstAttribute="top" secondItem="bLz-g4-b55" secondAttribute="bottom" constant="149" id="gjI-rj-Fm4"/>
+                            <constraint firstItem="bLz-g4-b55" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="j1b-fB-zcn"/>
+                            <constraint firstItem="yA7-Ss-Obb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nQN-Dc-8jH"/>
+                            <constraint firstItem="yA7-Ss-Obb" firstAttribute="top" secondItem="bLz-g4-b55" secondAttribute="bottom" constant="8" id="vbZ-FY-zzF"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="bLz-g4-b55"/>
+                                <exclude reference="yA7-Ss-Obb"/>
+                                <exclude reference="wQH-JF-kj0"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="8D3-Re-DFJ"/>
+                                <exclude reference="j1b-fB-zcn"/>
+                                <exclude reference="nQN-Dc-8jH"/>
+                                <exclude reference="vbZ-FY-zzF"/>
+                                <exclude reference="6zX-fN-LBQ"/>
+                                <exclude reference="gjI-rj-Fm4"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="bLz-g4-b55"/>
+                                <include reference="yA7-Ss-Obb"/>
+                                <include reference="wQH-JF-kj0"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="8D3-Re-DFJ"/>
+                                <include reference="j1b-fB-zcn"/>
+                                <include reference="nQN-Dc-8jH"/>
+                                <include reference="vbZ-FY-zzF"/>
+                                <include reference="6zX-fN-LBQ"/>
+                                <include reference="gjI-rj-Fm4"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="recordingInProgress" destination="yA7-Ss-Obb" id="Igw-3R-zLP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="432" y="289"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Microphone" width="100" height="100"/>
+        <image name="Stop" width="50" height="50"/>
+    </resources>
 </document>
