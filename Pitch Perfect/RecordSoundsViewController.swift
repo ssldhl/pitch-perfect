@@ -36,7 +36,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     @IBAction func recordAudio(sender: UIButton) {
         recordButton.enabled = false
         stopButton.hidden = false
-        recordingInProgress.hidden = false
+        recordingInProgress.text = "recording in progress"
         
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
             .UserDomainMask, true)[0] as String
@@ -48,7 +48,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         // Setup Audio Session with permission and record
         let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
         try! audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
-        try! audioRecorder = AVAudioRecorder(URL: filePath!, settings: [:])
+        audioRecorder = try! AVAudioRecorder(URL: filePath!, settings: [:])
         audioRecorder.delegate = self
         audioRecorder.meteringEnabled = true
         audioRecorder.prepareToRecord()
@@ -57,9 +57,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         if(flag){
-            recordedAudio = RecordedAudio()
-            recordedAudio.filePathURL = recorder.url
-            recordedAudio.title = recorder.url.lastPathComponent
+            recordedAudio = RecordedAudio(filePathURL: recorder.url, title: (recorder.url.lastPathComponent ?? ""))
             self.performSegueWithIdentifier("stopRecording", sender: recordedAudio)
         }else{
             print("Recording was not successful")
@@ -77,7 +75,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     @IBAction func stopAudio(sender: UIButton) {
-        recordingInProgress.hidden = true
+        recordingInProgress.text = "Tap to Record"
         audioRecorder.stop()
         let audioSession:AVAudioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
