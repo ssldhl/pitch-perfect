@@ -2,13 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pWg-r1-Mdw">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Record-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RecordSoundsViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -38,7 +39,6 @@
                                 <state key="normal" image="Stop"/>
                                 <connections>
                                     <action selector="stopAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Igp-of-CZJ"/>
-                                    <segue destination="fKS-61-61Q" kind="show" id="fBO-Y9-umP"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -87,6 +87,7 @@
                         <outlet property="recordButton" destination="bLz-g4-b55" id="h4r-Hi-Y0T"/>
                         <outlet property="recordingInProgress" destination="yA7-Ss-Obb" id="Igw-3R-zLP"/>
                         <outlet property="stopButton" destination="wQH-JF-kj0" id="hqT-hC-fML"/>
+                        <segue destination="fKS-61-61Q" kind="show" identifier="stopRecording" id="adi-Y3-i8z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -144,9 +145,15 @@
                                     <action selector="playFastAudio:" destination="fKS-61-61Q" eventType="touchUpInside" id="ytO-YJ-jKJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AZF-ki-mt0">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Chipmunk"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="AZF-ki-mt0" firstAttribute="leading" secondItem="sps-9w-GrN" secondAttribute="leadingMargin" constant="10" id="9zJ-X6-UQP"/>
+                            <constraint firstItem="AZF-ki-mt0" firstAttribute="top" secondItem="XJv-Dc-WaK" secondAttribute="bottom" constant="43" id="BxD-hD-1cp"/>
                             <constraint firstItem="XJv-Dc-WaK" firstAttribute="leading" secondItem="sps-9w-GrN" secondAttribute="leadingMargin" constant="10" id="M4G-mD-4L2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FaH-M2-KkD" secondAttribute="trailing" constant="10" id="XuR-Eg-07f"/>
                             <constraint firstItem="Q9s-W6-JNq" firstAttribute="top" secondItem="JGR-tT-tna" secondAttribute="bottom" constant="48" id="gDO-Kx-0SU"/>
@@ -159,10 +166,13 @@
                                 <exclude reference="XJv-Dc-WaK"/>
                                 <exclude reference="JGR-tT-tna"/>
                                 <exclude reference="FaH-M2-KkD"/>
+                                <exclude reference="AZF-ki-mt0"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="M4G-mD-4L2"/>
                                 <exclude reference="o6Y-7b-cOk"/>
+                                <exclude reference="9zJ-X6-UQP"/>
+                                <exclude reference="BxD-hD-1cp"/>
                                 <exclude reference="XuR-Eg-07f"/>
                                 <exclude reference="hEM-e7-9WF"/>
                                 <exclude reference="xgy-ip-n7x"/>
@@ -174,10 +184,13 @@
                                 <include reference="XJv-Dc-WaK"/>
                                 <include reference="JGR-tT-tna"/>
                                 <include reference="FaH-M2-KkD"/>
+                                <include reference="AZF-ki-mt0"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="M4G-mD-4L2"/>
                                 <include reference="o6Y-7b-cOk"/>
+                                <include reference="9zJ-X6-UQP"/>
+                                <include reference="BxD-hD-1cp"/>
                                 <include reference="XuR-Eg-07f"/>
                                 <include reference="hEM-e7-9WF"/>
                                 <include reference="xgy-ip-n7x"/>
@@ -192,6 +205,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Chipmunk" width="100" height="100"/>
         <image name="Fast" width="100" height="100"/>
         <image name="Microphone" width="100" height="100"/>
         <image name="Slow" width="100" height="100"/>
